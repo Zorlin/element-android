@@ -69,8 +69,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
-                    app:tint="?vctr_content_primary"
-                    tools:ignore="MissingPrefix" />
+                    app:srcCompat="@drawable/ic_logo_perthchat_org"
+                    tools:ignore="MissingPrefix"
+                    tools:srcCompat="@drawable/ic_logo_perthchat_org" />
 
                 <TextView
                     android:id="@+id/loginServerChoicePerthchatOrgText"
