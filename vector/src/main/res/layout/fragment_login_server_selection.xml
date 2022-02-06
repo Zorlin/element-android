@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    android:src="@drawable/ic_logo_matrix_org"
+                    android:src="@drawable/ic_logo_perthchat_org"
                     app:layout_constraintBottom_toTopOf="@id/loginServerChoicePerthchatOrgText"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
