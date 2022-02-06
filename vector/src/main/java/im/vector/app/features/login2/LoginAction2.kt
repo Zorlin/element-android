@@ -32,6 +32,7 @@ sealed class LoginAction2 : VectorViewModelAction {
 
     object EnterServerUrl : LoginAction2()
     object ChooseDefaultHomeServer : LoginAction2()
+    object ChoosePerthchatHomeServer : LoginAction2()
     data class UpdateHomeServer(val homeServerUrl: String) : LoginAction2()
     data class LoginWithToken(val loginToken: String) : LoginAction2()
     data class WebLoginSuccess(val credentials: Credentials) : LoginAction2()

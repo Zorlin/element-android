@@ -173,6 +173,12 @@ class LoginFragment @Inject constructor() : AbstractSSOLoginFragment<FragmentLog
             }
 
             when (state.serverType) {
+                ServerType.PerthchatOrg -> {
+                    views.loginServerIcon.isVisible = true
+                    views.loginServerIcon.setImageResource(R.drawable.ic_logo_matrix_org)
+                    views.loginTitle.text = getString(resId, state.homeServerUrlFromUser.toReducedUrl())
+                    views.loginNotice.text = getString(R.string.login_server_perthchat_org_text)
+                }
                 ServerType.MatrixOrg -> {
                     views.loginServerIcon.isVisible = true
                     views.loginServerIcon.setImageResource(R.drawable.ic_logo_matrix_org)
@@ -262,6 +268,7 @@ class LoginFragment @Inject constructor() : AbstractSSOLoginFragment<FragmentLog
     override fun updateWithState(state: LoginViewState) {
         isSignupMode = state.signMode == SignMode.SignUp
         isNumericOnlyUserIdForbidden = state.serverType == ServerType.MatrixOrg
+        isNumericOnlyUserIdForbidden = state.serverType == ServerType.PerthchatOrg
 
         setupUi(state)
         setupAutoFill(state)

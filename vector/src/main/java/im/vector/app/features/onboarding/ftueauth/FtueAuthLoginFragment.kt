@@ -181,6 +181,12 @@ class FtueAuthLoginFragment @Inject constructor() : AbstractSSOFtueAuthFragment<
             }
 
             when (state.serverType) {
+                ServerType.PerthchatOrg -> {
+                    views.loginServerIcon.isVisible = true
+                    views.loginServerIcon.setImageResource(R.drawable.ic_logo_matrix_org)
+                    views.loginTitle.text = getString(resId, state.homeServerUrlFromUser.toReducedUrl())
+                    views.loginNotice.text = getString(R.string.login_server_perthchat_org_text)
+                }
                 ServerType.MatrixOrg -> {
                     views.loginServerIcon.isVisible = true
                     views.loginServerIcon.setImageResource(R.drawable.ic_logo_matrix_org)

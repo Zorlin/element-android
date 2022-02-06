@@ -92,6 +92,7 @@ class LoginViewModel2 @AssistedInject constructor(
     private var currentHomeServerConnectionConfig: HomeServerConnectionConfig? = null
 
     private val matrixOrgUrl = stringProvider.getString(R.string.matrix_org_server_url).ensureTrailingSlash()
+    private val perthchatOrgUrl = stringProvider.getString(R.string.perthchat_org_server_url).ensureTrailingSlash()
 
     val currentThreePid: String?
         get() = registrationWizard?.currentThreePid
@@ -122,6 +123,7 @@ class LoginViewModel2 @AssistedInject constructor(
             is LoginAction2.UpdateSignMode             -> handleUpdateSignMode(action)
             is LoginAction2.InitWith                   -> handleInitWith(action)
             is LoginAction2.ChooseDefaultHomeServer    -> handle(LoginAction2.UpdateHomeServer(matrixOrgUrl))
+            is LoginAction2.ChoosePerthchatHomeServer  -> handle(LoginAction2.UpdateHomeServer(perthchatOrgUrl))
             is LoginAction2.UpdateHomeServer           -> handleUpdateHomeserver(action).also { lastAction = action }
             is LoginAction2.SetUserName                -> handleSetUserName(action).also { lastAction = action }
             is LoginAction2.SetUserPassword            -> handleSetUserPassword(action).also { lastAction = action }

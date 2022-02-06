@@ -102,6 +102,7 @@ class OnboardingViewModel @AssistedInject constructor(
     private var lastAction: OnboardingAction? = null
     private var currentHomeServerConnectionConfig: HomeServerConnectionConfig? = null
 
+    private val perthchatOrgUrl = stringProvider.getString(R.string.perthchat_org_server_url).ensureTrailingSlash()
     private val matrixOrgUrl = stringProvider.getString(R.string.matrix_org_server_url).ensureTrailingSlash()
 
     val currentThreePid: String?
@@ -483,6 +484,9 @@ class OnboardingViewModel @AssistedInject constructor(
 
         when (action.serverType) {
             ServerType.Unknown   -> Unit /* Should not happen */
+            ServerType.PerthchatOrg ->
+                // Request login flow here
+                handle(OnboardingAction.UpdateHomeServer(perthchatOrgUrl))
             ServerType.MatrixOrg ->
                 // Request login flow here
                 handle(OnboardingAction.UpdateHomeServer(matrixOrgUrl))
@@ -811,6 +815,8 @@ class OnboardingViewModel @AssistedInject constructor(
                         // It is also useful to set the value again in the case of a certificate error on matrix.org
                         serverType = if (homeServerConnectionConfig.homeServerUri.toString() == matrixOrgUrl) {
                             ServerType.MatrixOrg
+                        } else if (homeServerConnectionConfig.homeServerUri.toString() == perthchatOrgUrl) {
+                            ServerType.PerthchatOrg
                         } else {
                             serverTypeOverride ?: serverType
                         }
@@ -825,7 +831,7 @@ class OnboardingViewModel @AssistedInject constructor(
                     copy(
                             asyncHomeServerLoginFlowRequest = Uninitialized,
                             // If we were trying to retrieve matrix.org login flow, also reset the serverType
-                            serverType = if (serverType == ServerType.MatrixOrg) ServerType.Unknown else serverType
+                            serverType = if (serverType == ServerType.PerthchatOrg) ServerType.Unknown else if (serverType == ServerType.MatrixOrg) ServerType.Unknown else serverType
                     )
                 }
                 null

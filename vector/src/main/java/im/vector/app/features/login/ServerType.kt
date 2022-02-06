@@ -18,6 +18,7 @@ package im.vector.app.features.login
 
 enum class ServerType {
     Unknown,
+    PerthchatOrg,
     MatrixOrg,
     EMS,
     Other

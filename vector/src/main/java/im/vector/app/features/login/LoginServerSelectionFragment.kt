@@ -44,6 +44,7 @@ class LoginServerSelectionFragment @Inject constructor() : AbstractLoginFragment
 
     private fun initViews() {
         views.loginServerChoiceEmsLearnMore.debouncedClicks { learnMore() }
+        views.loginServerChoicePerthchatOrg.debouncedClicks { selectPerthchatOrg() }
         views.loginServerChoiceMatrixOrg.debouncedClicks { selectMatrixOrg() }
         views.loginServerChoiceEms.debouncedClicks { selectEMS() }
         views.loginServerChoiceOther.debouncedClicks { selectOther() }
@@ -52,6 +53,7 @@ class LoginServerSelectionFragment @Inject constructor() : AbstractLoginFragment
 
     private fun updateSelectedChoice(state: LoginViewState) {
         views.loginServerChoiceMatrixOrg.isChecked = state.serverType == ServerType.MatrixOrg
+        views.loginServerChoicePerthchatOrg.isChecked = state.serverType == ServerType.PerthchatOrg
     }
 
     private fun initTextViews() {
@@ -63,6 +65,10 @@ class LoginServerSelectionFragment @Inject constructor() : AbstractLoginFragment
 
     private fun learnMore() {
         openUrlInChromeCustomTab(requireActivity(), null, EMS_LINK)
+    }
+
+    private fun selectPerthchatOrg() {
+        loginViewModel.handle(LoginAction.UpdateServerType(ServerType.PerthchatOrg))
     }
 
     private fun selectMatrixOrg() {

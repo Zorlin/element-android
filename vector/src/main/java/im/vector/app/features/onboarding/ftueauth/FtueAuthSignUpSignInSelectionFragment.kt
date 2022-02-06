@@ -57,6 +57,12 @@ class FtueAuthSignUpSignInSelectionFragment @Inject constructor() : AbstractSSOF
 
     private fun setupUi(state: OnboardingViewState) {
         when (state.serverType) {
+            ServerType.PerthchatOrg -> {
+                views.loginSignupSigninServerIcon.setImageResource(R.drawable.ic_logo_matrix_org)
+                views.loginSignupSigninServerIcon.isVisible = true
+                views.loginSignupSigninTitle.text = getString(R.string.login_connect_to, state.homeServerUrlFromUser.toReducedUrl())
+                views.loginSignupSigninText.text = getString(R.string.login_server_perthchat_org_text)
+            }
             ServerType.MatrixOrg -> {
                 views.loginSignupSigninServerIcon.setImageResource(R.drawable.ic_logo_matrix_org)
                 views.loginSignupSigninServerIcon.isVisible = true

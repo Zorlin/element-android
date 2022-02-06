@@ -80,6 +80,12 @@ class OnboardingServersRobot {
         Espresso.pressBack()
     }
 
+    private fun crawlPerthchatServer(isSignUp: Boolean) {
+        BaristaClickInteractions.clickOn(R.id.loginServerChoicePerthchatOrg)
+        assetMatrixSignInOptions(isSignUp)
+        Espresso.pressBack()
+    }
+
     private fun assetMatrixSignInOptions(isSignUp: Boolean) {
         waitUntilViewVisible(ViewMatchers.withId(R.id.loginTitle))
         when (isSignUp) {

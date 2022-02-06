@@ -43,6 +43,7 @@ class LoginServerSelectionFragment2 @Inject constructor() : AbstractLoginFragmen
     }
 
     private fun initViews() {
+        views.loginServerChoicePerthchatOrg.setOnClickListener { selectPerthchatOrg() }
         views.loginServerChoiceMatrixOrg.setOnClickListener { selectMatrixOrg() }
         views.loginServerChoiceOther.setOnClickListener { selectOther() }
 
@@ -68,6 +69,11 @@ class LoginServerSelectionFragment2 @Inject constructor() : AbstractLoginFragmen
         }
     }
 
+    private fun selectPerthchatOrg() {
+        views.loginServerChoicePerthchatOrg.isChecked = true
+        loginViewModel.handle(LoginAction2.ChoosePerthchatHomeServer)
+    }
+
     private fun selectMatrixOrg() {
         views.loginServerChoiceMatrixOrg.isChecked = true
         loginViewModel.handle(LoginAction2.ChooseDefaultHomeServer)
@@ -80,6 +86,7 @@ class LoginServerSelectionFragment2 @Inject constructor() : AbstractLoginFragmen
 
     override fun onResume() {
         super.onResume()
+        views.loginServerChoicePerthchatOrg.isChecked = false
         views.loginServerChoiceMatrixOrg.isChecked = false
         views.loginServerChoiceOther.isChecked = false
     }

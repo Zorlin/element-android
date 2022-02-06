@@ -253,6 +253,7 @@ class FtueAuthVariant(
     private fun onServerSelectionDone(OnboardingViewEvents: OnboardingViewEvents.OnServerSelectionDone) {
         when (OnboardingViewEvents.serverType) {
             ServerType.MatrixOrg -> Unit // In this case, we wait for the login flow
+            ServerType.PerthchatOrg -> Unit // In this case, we wait for the login flow
             ServerType.EMS,
             ServerType.Other     -> activity.addFragmentToBackstack(views.loginFragmentContainer,
                     FtueAuthServerUrlFormFragment::class.java,

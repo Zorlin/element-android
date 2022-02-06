@@ -49,6 +49,7 @@ class FtueAuthServerSelectionFragment @Inject constructor() : AbstractFtueAuthFr
 
     private fun initViews() {
         views.loginServerChoiceEmsLearnMore.setOnClickListener { learnMore() }
+        views.loginServerChoicePerthchatOrg.setOnClickListener { selectPerthchatOrg() }
         views.loginServerChoiceMatrixOrg.setOnClickListener { selectMatrixOrg() }
         views.loginServerChoiceEms.setOnClickListener { selectEMS() }
         views.loginServerChoiceOther.setOnClickListener { selectOther() }
@@ -57,6 +58,7 @@ class FtueAuthServerSelectionFragment @Inject constructor() : AbstractFtueAuthFr
 
     private fun updateSelectedChoice(state: OnboardingViewState) {
         views.loginServerChoiceMatrixOrg.isChecked = state.serverType == ServerType.MatrixOrg
+        views.loginServerChoicePerthchatOrg.isChecked = state.serverType == ServerType.PerthchatOrg
     }
 
     private fun initTextViews() {
@@ -68,6 +70,10 @@ class FtueAuthServerSelectionFragment @Inject constructor() : AbstractFtueAuthFr
 
     private fun learnMore() {
         openUrlInChromeCustomTab(requireActivity(), null, EMS_LINK)
+    }
+
+    private fun selectPerthchatOrg() {
+        viewModel.handle(OnboardingAction.UpdateServerType(ServerType.PerthchatOrg))
     }
 
     private fun selectMatrixOrg() {
